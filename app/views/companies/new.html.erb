@@ -1,0 +1,24 @@
+
+<%= form_with model: @company, local: true do |form|%>
+
+    <%= form.label :name%>
+    <%= form.text_field :name%>
+
+    <%= form.label :legal_name %>
+    <%= form.text_field :legal_name %>
+
+    <%= form.label :cnpj %>
+    <%= form.text_field :cnpj %>
+
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+
+    <%= form.label :social_media%>
+    <%= form.text_field :social_media%>
+
+    <%= form.label :domain%>
+    <%= form.text_field :domain%>  
+
+    <%= form.submit 'Cadastrar'%>
+
+<% end %>
