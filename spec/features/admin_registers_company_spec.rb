@@ -23,4 +23,61 @@ feature 'Admin registers company' do
         expect(page).to have_content('@empresa01')
         expect(page).to have_content('@empresa01.com')
     end
+
+    scenario 'and attributes cannot be blank' do
+        visit root_path
+        click_on 'Empresas'
+        click_on 'Registrar nova empresa'
+
+        fill_in 'Nome', with: ''
+        fill_in 'Razão social', with: ''
+        fill_in 'CNPJ', with: ''
+        fill_in 'Endereço', with: ''
+        fill_in 'Redes sociais', with: ''
+        fill_in 'Domínio', with: ''
+        click_on 'Cadastrar'
+        
+        expect(page).to have_content('Nome não pode ficar em branco')
+        expect(page).to have_content('Razão social não pode ficar em branco')
+        expect(page).to have_content('CNPJ não pode ficar em branco')
+        expect(page).to have_content('Endereço não pode ficar em branco')
+        expect(page).to have_content('Redes sociais não pode ficar em branco')
+        expect(page).to have_content('Domínio não pode ficar em branco')
+    end
+
+    scenario 'cnpj must be valid' do
+        visit root_path
+        click_on 'Empresas'
+        click_on 'Registrar nova empresa'
+
+        fill_in 'Nome', with: 'Empresa01'
+        fill_in 'Razão social', with: 'Empresa01 LTDA'
+        fill_in 'CNPJ', with: '12345678910123'
+        fill_in 'Endereço', with: 'Rua Vergueiro,100'
+        fill_in 'Redes sociais', with: '@empresa01'
+        fill_in 'Domínio', with: '@empresa01.com'
+        click_on 'Cadastrar'
+        
+        expect(page).to have_content('CNPJ inválido')
+    end
+
+    scenario 'cnpj must be unique' do
+        company = Company.create!(name: 'Empresa01', legal_name:'Empresa01 LTDA', cnpj: '98922455000169',
+                                  address:'Rua nada, 100', social_media:'linkedin', domain:'@empresa01.com.br')
+        
+        visit root_path
+        click_on 'Empresas'
+        click_on 'Registrar nova empresa'
+
+        fill_in 'Nome', with: 'Empresa01'
+        fill_in 'Razão social', with: 'Empresa01 LTDA'
+        fill_in 'CNPJ', with: '98922455000169'
+        fill_in 'Endereço', with: 'Rua Vergueiro,100'
+        fill_in 'Redes sociais', with: '@empresa01'
+        fill_in 'Domínio', with: '@empresa01.com'
+        click_on 'Cadastrar'
+        click_on 'Cadastrar'
+        
+        expect(page).to have_content('CNPJ já está em uso')
+    end
 end
