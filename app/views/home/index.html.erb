@@ -1,5 +1,12 @@
 <h1> Bem vindo ao Market Place!</h1>
 
+<% if user_signed_in? %>
+  <%= current_user.name %>
+  <%= link_to 'Sair',  destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'Entrar', new_user_session_path %>
+<% end %>  
+
+
 <%= link_to 'Empresas',  companies_path%>
 
-<%= link_to 'Meu perfil',  new_company_employee_path%>
