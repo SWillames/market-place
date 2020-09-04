@@ -1,4 +1,5 @@
 class Company < ApplicationRecord
+    has_many :company_employees
  
     validates :name, :legal_name, :cnpj, :address, :social_media, 
                :domain, presence: true

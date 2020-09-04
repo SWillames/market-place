@@ -1,0 +1,15 @@
+---
+pt-BR:
+  activerecord:
+  models:
+    company_employee:
+      one: 'Colaborador'
+      other: 'Colaboradores'
+  attributes:
+      full_name: 'Nome completo'
+      date_of_birth: 'Data de nascimento'
+      cpf: 'CPF'
+      position: 'Cargo'
+      departament: 'Setor'
+      company: 'Empresa'
+      company_id: 'Empresa'

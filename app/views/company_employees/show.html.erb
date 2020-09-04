@@ -1,0 +1,18 @@
+
+<%= link_to 'Voltar', root_path%>
+
+<% if current_user.company_employee.nil? %>
+  <%= link_to 'Preencher meu Perfil', new_company_employee_path %>
+
+<% else %>
+  <%= link_to 'Editar meu Perfil' %>
+    Nome: <%= current_user.name%>
+    Nome Completo: <%= @company_employee.full_name%>
+    Data de Nascimento: <%= l @company_employee.date_of_birth%>
+    CPF: <%= @company_employee.cpf%>
+    Empresa: <%= @company_employee.company.name %>
+    Cargo: <%= @company_employee.position%>
+    Setor: <%= @company_employee.departament%>
+
+<% end %>
+

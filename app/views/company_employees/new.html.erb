@@ -1,0 +1,22 @@
+
+<%= form_with model: @company_employee, local:true do |form|%>
+
+  <%= form.label :full_name%>
+  <%= form.text_field :full_name%>
+
+  <%= form.label :date_of_birth%>
+  <%= form.text_field :date_of_birth%>
+
+  <%= form.label :position%>
+  <%= form.text_field :position%>
+
+  <%= form.label :departament%>
+  <%= form.text_field :departament%>
+
+  <%= form.label :cpf%>
+  <%= form.text_field :cpf%>
+
+   <%= form.submit 'Cadastrar'%>
+
+
+<% end %>
