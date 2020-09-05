@@ -1,0 +1,14 @@
+        
+        
+Título do anúncio 
+<%= @ad.title %>
+Imagens do produto
+<% @ad.images.each do |image| %>
+    <%= image_tag image %>
+<% end %>
+Descrição
+<%= @ad.description %>
+Preço
+<%= @ad.price %>
+Categoria do produto
+<%= @ad.product_category.name %>

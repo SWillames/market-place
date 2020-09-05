@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+  models:
+    ad:
+      one: 'Anúncio'
+      other: 'Anúncios'
+  attributes:
+      title: 'Título do anúncio'
+      description: 'Descrição'
+      price: 'Preço'
+      status: 'Status'
+      product_category: 'Categoria do produto'
+      product_category_id: 'Categoria do produto'
+      company_employee: 'Vendedor'
+      company_employee_id: 'Vendedor'
