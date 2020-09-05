@@ -17,7 +17,22 @@
 <%= link_to 'Anunciar',  new_ad_path%>
 
 
-<%= render partial: "ads/ad", collection: @ads %>
+<%= form_with url: search_ad_path, method: :get, local:true do |form| %>
+  <%= form.label :q, 'Buscar produto'%>
+  <%= form.text_field :q %>
+  <%= form.submit 'Buscar'%>
+<% end %>
+    
+<% if @ads.nil?%>
+  Nenhum produto encontrado
+<%else%>
+  <%= render partial: "ads/ad", collection: @ads %>
+<%end%>
+
+
+  <% @product_categories.each do |product_category| %>
+    <%= link_to product_category.name, filter_ad_path(product_category_id: product_category.id ) %>
+  <% end %>
 
 
 

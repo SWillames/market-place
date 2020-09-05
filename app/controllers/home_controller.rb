@@ -4,5 +4,20 @@ class HomeController < ApplicationController
     def index
        @company = Company.find_by(domain: current_user.domain)
        @ads = @company.ads
+       @product_categories = ProductCategory.all
+    end
+
+    def search
+        @company = Company.find_by(domain: current_user.domain)
+        @ads = @company.ads.where("title LIKE :search OR description LIKE :search ", { search: "%#{params[:q]}%" })
+        @product_categories = ProductCategory.all
+        render :index
+    end
+
+    def filter
+       @company = Company.find_by(domain: current_user.domain)  
+       @ads = @company.ads.where(product_category_id: params[:product_category_id])
+       @product_categories = ProductCategory.all
+       render :index
     end
 end
