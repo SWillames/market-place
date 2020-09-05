@@ -33,5 +33,6 @@ feature 'User completes profile' do
         expect(page).to have_content('86368474009')
         
     end
+
 end
 

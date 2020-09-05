@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_051311) do
+ActiveRecord::Schema.define(version: 2020_09_05_020549) do
+
+  create_table "ads", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.decimal "price"
+    t.integer "status"
+    t.integer "product_category_id", null: false
+    t.integer "company_employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_employee_id"], name: "index_ads_on_company_employee_id"
+    t.index ["product_category_id"], name: "index_ads_on_product_category_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -35,6 +48,13 @@ ActiveRecord::Schema.define(version: 2020_09_04_051311) do
     t.index ["company_id"], name: "index_company_employees_on_company_id"
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,6 +70,8 @@ ActiveRecord::Schema.define(version: 2020_09_04_051311) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ads", "company_employees"
+  add_foreign_key "ads", "product_categories"
   add_foreign_key "company_employees", "companies"
   add_foreign_key "users", "company_employees"
 end

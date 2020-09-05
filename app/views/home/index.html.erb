@@ -3,18 +3,20 @@
 <% if user_signed_in? %>
   <%= link_to 'Sair',  destroy_user_session_path, method: :delete %>
   
-  <% if current_user.company_employee.nil? %>
-    <%= link_to 'Meu Perfil', new_company_employee_path %>
-  <% else %>
-    <%= link_to 'Meu perfil',company_employee_path(current_user.company_employee) %>
-  <% end%>
+    <% if current_user.company_employee.nil? %>
+      <%= link_to 'Meu Perfil', new_company_employee_path %>
+    <% else %>
+      <%= link_to 'Meu perfil',company_employee_path(current_user.company_employee) %>
+    <% end%>
 
 <% else %>
   <%= link_to 'Entrar', new_user_session_path %>
 <% end %>  
 
-
- 
-
 <%= link_to 'Empresas',  companies_path%>
+
+
+<%= render partial: "ads/ad", collection: @ads %>
+
+
 
