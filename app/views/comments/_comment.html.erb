@@ -1,0 +1,13 @@
+
+
+    <%= comment.user.name%>
+    <div> <%= comment.user.company_employee.departament%> </div>
+    <p>   <%= comment.body%> </p>
+<div>
+  <%= render partial: "comments/form", locals: { commentable: @ad , parent_id: comment.id} %>
+</div>
+
+<ol>
+  <%= render comment.comments %>
+</ol>
+

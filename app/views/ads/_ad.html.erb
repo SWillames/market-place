@@ -1,5 +1,5 @@
     <div>
-      <%= ad.title%>
+      <%= link_to ad.title, ad_path(ad)%>
       <%= ad.description %>
       <%= number_to_currency ad.price%>
     <div>

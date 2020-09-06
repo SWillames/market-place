@@ -2,9 +2,9 @@ class HomeController < ApplicationController
     before_action :authenticate_user!, only: [ :index]  
 
     def index
+       @product_categories = ProductCategory.all
        @company = Company.find_by(domain: current_user.domain)
        @ads = @company.ads
-       @product_categories = ProductCategory.all
     end
 
     def search

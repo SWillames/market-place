@@ -1,14 +1,29 @@
         
-        
+<div>      
 Título do anúncio 
 <%= @ad.title %>
+</div> 
+
+<div> 
 Imagens do produto
 <% @ad.images.each do |image| %>
     <%= image_tag image %>
 <% end %>
+</div> 
+
+<div> 
 Descrição
 <%= @ad.description %>
+<div> 
 Preço
-<%= @ad.price %>
+<%= number_to_currency @ad.price %>
+<div> 
 Categoria do produto
 <%= @ad.product_category.name %>
+</div> 
+
+
+<h3>Comentários</h3>
+<%= render partial: "comments/form", locals: { commentable: @ad } %>
+
+<%= render @ad.comments.where(parent_id: nil) %>
