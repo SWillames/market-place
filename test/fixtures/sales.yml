@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  buyer_id: 1
+  ad: one
+  status: 1
+  token: MyString
+  final_price: 9.99
+
+two:
+  buyer_id: 1
+  ad: two
+  status: 1
+  token: MyString
+  final_price: 9.99

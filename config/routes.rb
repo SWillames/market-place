@@ -6,9 +6,15 @@ Rails.application.routes.draw do
 
   resources :companies, only: [ :index, :show, :new, :create]
   resources :company_employees, only: [:index, :show, :new, :create]
-  resources :ads, only: [:show, :new, :create]
-  resources :ads do
-    resources :comments 
+  
+
+  resources :ads, only: [:show, :new, :create]  do
+    resource :comments
+    resources :sales , only: [:show, :create, :update] 
+  end
+
+  resources :sales , only: [:show, :create, :update] do
+    resource :comments
   end
 
 end

@@ -3,6 +3,5 @@ class Ad < ApplicationRecord
   belongs_to :company_employee
   has_many_attached :images
   has_many :comments, as: :commentable
-
-
+  has_one :sale
 end

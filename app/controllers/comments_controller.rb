@@ -1,10 +1,5 @@
 class CommentsController < ApplicationController
-
-    def new
-      @comment = Comment.new
-    end
     
-
     def create
         find_commentable()
         @comment = @commentable.comments.build(comment_params)
@@ -20,6 +15,10 @@ class CommentsController < ApplicationController
     end  
 
     def find_commentable
-        @commentable = Ad.find_by_id(params[:ad_id]) if params[:ad_id]
+        if params[:sale_id]
+           @commentable = Sale.find_by_id(params[:sale_id])
+        elsif params[:ad_id] 
+           @commentable = Ad.find_by_id(params[:ad_id])
+        end
     end
 end

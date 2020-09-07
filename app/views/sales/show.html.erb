@@ -1,0 +1,44 @@
+<div>      
+<%= @sale.token %>
+</div> 
+
+<div>      
+<%= @ad.title %>
+</div> 
+
+<div>
+Vendido por: <%= "#{@ad.company_employee.user.name} - #{@ad.company_employee.departament}"%>
+</div>
+
+<div> 
+Imagens do produto
+<% @ad.images.each do |image| %>
+    <%= image_tag image %>
+<% end %>
+</div> 
+
+<div> 
+Descrição
+<%= @ad.description %>
+<div> 
+Preço
+<%= number_to_currency @ad.price %>
+<div> 
+
+
+<h3>Mensagens</h3>
+
+  <% @sale.comments.each do |comment|%>
+    <%= comment.user.name%>
+    <%= comment.user.company_employee.departament%> </div>
+    <%= comment.body%> </p>
+  <%end%>
+
+
+<%= form_with model: [@sale, Comment.new], local: true do |form| %>
+    <%= form.text_area :body, placeholder: "Envie uma mensagem ao vendedor..." %>
+    <div>
+    <%= form.submit 'Enviar' %>
+  </div>
+<% end %>
+

@@ -18,10 +18,9 @@ Descrição
 Preço
 <%= number_to_currency @ad.price %>
 <div> 
-Categoria do produto
-<%= @ad.product_category.name %>
-</div> 
 
+
+<%= link_to 'Comprar', ad_sales_path(@ad), method: :post %>
 
 <h3>Comentários</h3>
 <%= render partial: "comments/form", locals: { commentable: @ad } %>
