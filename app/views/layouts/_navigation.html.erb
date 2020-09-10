@@ -1,0 +1,22 @@
+
+
+<nav class="navbar justify-content-center navbar-dark bg-dark"><p class="text-white bg-dark">Market Place</p></nav>
+
+<% if user_signed_in? %>
+    <div class="float-right d-inline ">
+        <ul class="list-group">
+            <li class="list-group-item"><%= current_user.name%></li>
+            <li class="list-group-item">
+                <% if current_user.company_employee.nil? %>
+                <%= link_to 'Meu Perfil', new_company_employee_path %>
+                <% else %>
+                <%= link_to 'Meu perfil',company_employee_path(current_user.company_employee) %>
+                <% end%>        
+            </li>
+            <li class="list-group-item"><%= link_to 'Produtos à venda', root_path %></li>
+            <li class="list-group-item"><%= link_to 'Lista de interesses','#' %></li>
+            <li class="list-group-item"><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
+        </ul>
+    </div>
+<% end %>
+

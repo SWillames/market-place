@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Company employee start sale' do
+feature 'Company employee buyer start a sale' do
     scenario 'successfully' do
         company = Company.create!(name: 'Empresa01', legal_name:'Empresa01 LTDA', cnpj: '98922455000169',
                                   address:'Rua nada, 100', social_media:'linkedin', domain:'@empresa01.com.br')
@@ -18,19 +18,22 @@ feature 'Company employee start sale' do
         
         ad = Ad.create!(title:'Celular Samsung J8', description:'Celular J8 seminovo, nenhum arranhão',price:700,
                         status:1 ,product_category:product_category,company_employee: company_employee2)
+        another_ad = Ad.create!(title:'Playstation', description:'Descrição do playstation',price:800,
+                          status:1, product_category:product_category,company_employee: company_employee2)
 
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Celular Samsung J8'
+        within all('.card', text: 'Celular Samsung J8')[0] do
+            click_on 'Comprar'
+        end
         click_on 'Comprar'
         
         expect(page).to have_content('Celular Samsung J8')
         expect(page).to have_content('R$ 700,00')
         expect(page).to have_content('Celular J8 seminovo, nenhum arranhão')
         expect(page).to have_content('Marlene Souza - RH')
-        expect(page).to have_link('Concluir venda')
-        expect(page).to have_link('Cancelar venda')
+        expect(page).to have_link('Cancelar compra')
    end
 
    scenario 'and send a private message' do
@@ -48,16 +51,20 @@ feature 'Company employee start sale' do
 
         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos') 
         
+        another_ad = Ad.create!(title:'Playstation', description:'Descrição do playstation',price:800,
+                                status:1, product_category:product_category,company_employee: company_employee2)
         ad = Ad.create!(title:'Celular Samsung J8', description:'Celular J8 seminovo, nenhum arranhão',price:700,
                         status:1 ,product_category:product_category,company_employee: company_employee2)
 
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Celular Samsung J8'
+        within all('.card', text: 'Celular Samsung J8')[0] do
+            click_on 'Comprar'
+        end
         click_on 'Comprar'
 
-        fill_in placeholder: 'Envie uma mensagem ao vendedor...', with: 'Olá, gostaria de comprar o produto'
+        fill_in placeholder: 'Envie uma mensagem...', with: 'Olá, gostaria de comprar o produto'
         click_on 'Enviar'
 
         expect(page).to have_content('Celular Samsung J8')
@@ -66,7 +73,7 @@ feature 'Company employee start sale' do
         expect(page).to have_content('Marco Lima')
         expect(page).to have_content('RH')
         expect(page).to have_content('Olá, gostaria de comprar o produto')
- end
-
- 
+    end
+    
+    
 end

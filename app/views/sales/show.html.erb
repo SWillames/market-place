@@ -1,9 +1,5 @@
 <div>      
-<%= @sale.token %>
-</div> 
-
-<div>      
-<%= @ad.title %>
+<%= "Compra##{@sale.token} -  #{@ad.title}"%>
 </div> 
 
 <div>
@@ -11,7 +7,6 @@ Vendido por: <%= "#{@ad.company_employee.user.name} - #{@ad.company_employee.dep
 </div>
 
 <div> 
-Imagens do produto
 <% @ad.images.each do |image| %>
     <%= image_tag image %>
 <% end %>
@@ -20,23 +15,38 @@ Imagens do produto
 <div> 
 Descrição
 <%= @ad.description %>
+</div> 
+
 <div> 
 Preço
 <%= number_to_currency @ad.price %>
-<div> 
+</div> 
+
+ <% if current_user.company_employee == @sale.buyer %>
+   <%= link_to 'Cancelar compra', ad_sale_path(@ad, @sale, status:'canceled'), method: :patch %>
+ <% end %>
+
+<% if (@sale.status == 'waiting_seller' && current_user.company_employee == @ad.company_employee) %>
+  <%= "#{@sale.buyer.name} gostaria de comprar o produto"%>
+  <%= button_to 'Concluir venda', ad_sale_path(@ad, @sale, status:'sold'), method: :patch, class:"btn btn-success" %>
+  <%= button_to 'Cancelar venda', ad_sale_path(@ad, @sale, status:'canceled'), method: :patch, class:"btn btn-danger"%>
+<% end %>
 
 
 <h3>Mensagens</h3>
+  
 
   <% @sale.comments.each do |comment|%>
+    <div>
     <%= comment.user.name%>
-    <%= comment.user.company_employee.departament%> </div>
-    <%= comment.body%> </p>
+    <%= comment.user.company_employee.departament%>
+    <p> <%= comment.body%> </p>
+    </div>
   <%end%>
 
 
 <%= form_with model: [@sale, Comment.new], local: true do |form| %>
-    <%= form.text_area :body, placeholder: "Envie uma mensagem ao vendedor..." %>
+    <%= form.text_area :body, placeholder: "Envie uma mensagem..." %>
     <div>
     <%= form.submit 'Enviar' %>
   </div>

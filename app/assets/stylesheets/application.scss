@@ -14,3 +14,37 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
     @import "bootstrap";
+
+   .card-margin {
+      margin: 15px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      cursor: pointer;
+   }
+
+   .card-margin:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+   }
+
+   a:link {
+      text-decoration: none;
+      color: black;
+      font-size:16px;
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+
+    .search-form{
+       margin-top:70px;
+       margin-bottom:30px;
+       margin-left: 20px;
+    }
+
+    .search-input{
+       width:50%
+    }
+ 
+    .ad-img{
+         grid-column: 3;
+         grid-row: 1 / span 2;
+    }

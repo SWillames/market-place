@@ -23,7 +23,9 @@ feature 'Company employee sends doubt about ad' do
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Celular Samsung J8'
+        within all('.card', text: 'Celular Samsung J8')[0] do
+            click_on 'Comprar'
+        end
         
         fill_in placeholder: 'Adicione um comentário' , with: 'O celular está em boas condições?'
         click_on 'Enviar'
@@ -60,7 +62,9 @@ feature 'Company employee sends doubt about ad' do
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Celular Samsung J8'
+        within all('.card', text: 'Celular Samsung J8')[0] do
+            click_on 'Comprar'
+        end
 
         expect(page).to have_content('Sim e possui nota fiscal')
         expect(page).to have_content('Marlene Souza')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_014647) do
+ActiveRecord::Schema.define(version: 2020_09_09_205400) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,14 +89,15 @@ ActiveRecord::Schema.define(version: 2020_09_07_014647) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer "buyer_id"
+    t.integer "buyer_id", null: false
     t.integer "ad_id", null: false
     t.integer "status"
-    t.string "token"
     t.decimal "final_price"
+    t.string "token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ad_id"], name: "index_sales_on_ad_id"
+    t.index ["buyer_id"], name: "index_sales_on_buyer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,5 +121,6 @@ ActiveRecord::Schema.define(version: 2020_09_07_014647) do
   add_foreign_key "comments", "users"
   add_foreign_key "company_employees", "companies"
   add_foreign_key "sales", "ads"
+  add_foreign_key "sales", "users", column: "buyer_id"
   add_foreign_key "users", "company_employees"
 end

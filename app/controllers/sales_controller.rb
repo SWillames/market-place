@@ -7,13 +7,14 @@ class SalesController < ApplicationController
 
     def create
         @ad = Ad.find(params[:ad_id])
-        @sale = @ad.build_sale(buyer_id: current_user.company_employee.id,
-                               status:'started')
+        @sale = @ad.sales.build(buyer_id: current_user.id,
+                               status:'waiting_seller')
         @sale.save
-        render :show
+        redirect_to ad_sale_path(@ad, @sale)
     end 
     
     def update
+      
         
     end 
 

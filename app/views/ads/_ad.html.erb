@@ -1,6 +1,35 @@
-    <div>
-      <%= link_to ad.title, ad_path(ad)%>
-      <%= ad.description %>
-      <%= number_to_currency ad.price%>
-    <div>
 
+   <div class="col-3">
+
+      
+   
+    <div class="card card-margin" style="width: 16rem;">
+      <div class="card-img">
+        <%if ad.images.present?%>
+          <%= image_tag(ad.images.first, class: "card-img-top ")%>
+        <%end%>
+      </div>
+      <div class="card-body">
+         <h5 class="card-title"> <%= ad.title %></h5>
+         <p class="card-text"><%= ad.description%></p>
+         <div>
+         <h5 class="card-text"> <%= number_to_currency ad.price %></h5>
+         <%= button_to 'Comprar',ad_path(ad), method: "get", class:"btn btn-dark"%>
+         </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+     
+     
+     
+     
+     
+     
+     
+    
+   
+    

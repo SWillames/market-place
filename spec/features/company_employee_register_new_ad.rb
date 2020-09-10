@@ -28,7 +28,6 @@ feature 'Company employee registers new ad' do
         expect(current_path).to eq ad_path(Ad.last)
         expect(page).to have_content('TV 32"')
         expect(page).to have_content('Smart TV Samsung 32"')
-        expect(page).to have_content('Eletrônicos')
         expect(page).to have_css('img[src*="product_image.jpg"]')
     end
 
@@ -50,5 +49,6 @@ feature 'Company employee registers new ad' do
         expect(page).to have_content('Complete seu cadastro para anunciar')        
     end
 
+    
 
 end

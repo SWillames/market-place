@@ -1,13 +1,16 @@
         
-<div>      
-Título do anúncio 
-<%= @ad.title %>
+<div>     
+<h1><%= @ad.title %></h1>
 </div> 
 
+<div>
+Vendido por:
+<%= "#{@ad.company_employee.user.name} - #{@ad.company_employee.departament}"%>
+</div>
+
 <div> 
-Imagens do produto
 <% @ad.images.each do |image| %>
-    <%= image_tag image %>
+    <%= image_tag image%>
 <% end %>
 </div> 
 
@@ -20,7 +23,7 @@ Preço
 <div> 
 
 
-<%= link_to 'Comprar', ad_sales_path(@ad), method: :post %>
+<%= button_to 'Comprar', ad_sales_path(@ad), method: :post %>
 
 <h3>Comentários</h3>
 <%= render partial: "comments/form", locals: { commentable: @ad } %>
