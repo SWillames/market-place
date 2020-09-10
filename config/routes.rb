@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     resource :comments
   end
 
+  resources :histories, only: [:index]
+
 end

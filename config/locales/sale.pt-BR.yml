@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+  models:
+    sale:
+      one: 'Venda'
+      other: 'Vendas'
+  attributes:
+        buyer: 'Comprador'
+        ad: 'Anúncio'
+        final_price: "Preço final"  
+        in_progress: "Em andamento"
+        finished: "Finalizada"
+        canceled: "Cancelada"

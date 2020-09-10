@@ -1,5 +1,5 @@
 <div>      
-<%= "Compra##{@sale.token} -  #{@ad.title}"%>
+  <h3><%= "Compra##{@sale.token} -  #{@ad.title}"%></h3>
 </div> 
 
 <div>
@@ -22,9 +22,6 @@ Preço
 <%= number_to_currency @ad.price %>
 </div> 
 
- <% if current_user.company_employee == @sale.buyer %>
-   <%= link_to 'Cancelar compra', ad_sale_path(@ad, @sale, status:'canceled'), method: :patch %>
- <% end %>
 
 <% if (@sale.status == 'waiting_seller' && current_user.company_employee == @ad.company_employee) %>
   <%= "#{@sale.buyer.name} gostaria de comprar o produto"%>
@@ -33,7 +30,7 @@ Preço
 <% end %>
 
 
-<h3>Mensagens</h3>
+<h4>Mensagens</h4>
   
 
   <% @sale.comments.each do |comment|%>

@@ -13,7 +13,7 @@
                 <%= link_to 'Meu perfil',company_employee_path(current_user.company_employee) %>
                 <% end%>        
             </li>
-            <li class="list-group-item"><%= link_to 'Produtos à venda', root_path %></li>
+            <li class="list-group-item"><%= link_to 'Meu histórico', histories_path %></li>
             <li class="list-group-item"><%= link_to 'Lista de interesses','#' %></li>
             <li class="list-group-item"><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
         </ul>

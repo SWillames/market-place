@@ -1,0 +1,15 @@
+---
+pt-BR:
+  activerecord:
+  models:
+    history:
+      one: 'Histórico'
+  attributes:
+        user: 'Usuário'
+        sale: 'Venda'
+        sale: "Venda"
+        purchase: "Compra"
+        
+        
+        
+      

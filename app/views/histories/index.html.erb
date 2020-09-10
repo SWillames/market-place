@@ -1,0 +1,33 @@
+<h1> Meu histórico </h1>
+
+<div>
+ <% link_to 'Todos',"#"%>
+ <% link_to 'Vendas',"#"%>
+ <% link_to 'Compras',"#"%>
+ </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Transação#</th>
+         <th scope="col">Tipo</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @histories.each do |history| %>
+    <tr>
+     <th scope="row"><%= a = history.sale.token %></th>
+      <td><%= History.human_attribute_name("history_type.#{history.history_type}") %></td>
+      <td><%= history.sale.ad.title %></td>
+      <td><%= number_to_currency history.sale.ad.price %></td>
+      <td><%= Sale.human_attribute_name("status.#{history.sale.status}")  %></td>
+    </tr> 
+    <%end%>  
+  </tbody>
+</table>
+
+
+

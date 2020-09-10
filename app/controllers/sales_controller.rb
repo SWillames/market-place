@@ -7,9 +7,10 @@ class SalesController < ApplicationController
 
     def create
         @ad = Ad.find(params[:ad_id])
-        @sale = @ad.sales.build(buyer_id: current_user.id,
-                               status:'waiting_seller')
+        @sale = @ad.sales.build(buyer_id: current_user.id,status:'in_progress')
         @sale.save
+        History.create(user:current_user, sale:@sale, history_type:'purchase')
+        History.create(user: @sale.ad.company_employee.user, sale:@sale, history_type:'sale')
         redirect_to ad_sale_path(@ad, @sale)
     end 
     

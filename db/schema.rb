@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_205400) do
+ActiveRecord::Schema.define(version: 2020_09_10_153731) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 2020_09_09_205400) do
     t.index ["company_id"], name: "index_company_employees_on_company_id"
   end
 
+  create_table "histories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "sale_id", null: false
+    t.integer "history_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sale_id"], name: "index_histories_on_sale_id"
+    t.index ["user_id"], name: "index_histories_on_user_id"
+  end
+
   create_table "product_categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -120,6 +130,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_205400) do
   add_foreign_key "ads", "product_categories"
   add_foreign_key "comments", "users"
   add_foreign_key "company_employees", "companies"
+  add_foreign_key "histories", "sales"
+  add_foreign_key "histories", "users"
   add_foreign_key "sales", "ads"
   add_foreign_key "sales", "users", column: "buyer_id"
   add_foreign_key "users", "company_employees"
