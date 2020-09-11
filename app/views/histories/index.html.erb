@@ -19,7 +19,7 @@
   <tbody>
    <% @histories.each do |history| %>
     <tr>
-     <th scope="row"><%= a = history.sale.token %></th>
+     <th scope="row"><%= link_to history.sale.token, ad_sale_path(history.sale.ad,history.sale) %></th>
       <td><%= History.human_attribute_name("history_type.#{history.history_type}") %></td>
       <td><%= history.sale.ad.title %></td>
       <td><%= number_to_currency history.sale.ad.price %></td>

@@ -23,11 +23,34 @@ Preço
 </div> 
 
 
-<% if (@sale.status == 'waiting_seller' && current_user.company_employee == @ad.company_employee) %>
-  <%= "#{@sale.buyer.name} gostaria de comprar o produto"%>
-  <%= button_to 'Concluir venda', ad_sale_path(@ad, @sale, status:'sold'), method: :patch, class:"btn btn-success" %>
-  <%= button_to 'Cancelar venda', ad_sale_path(@ad, @sale, status:'canceled'), method: :patch, class:"btn btn-danger"%>
+
+<% if (@sale.status == 'in_progress' && current_user.company_employee == @ad.company_employee) %>
+  <%= "#{@sale.buyer.name} gostaria de comprar o produto"%>                                                                         
+
+  <%= form_with model:[@ad,@sale], method: :patch, local:true do |form|%>
+    <%= form.label :final_price %>
+    <%= form.number_field :final_price %> 
+    <%= form.hidden_field :status, value:'finished' %>
+    <%= form.submit "Concluir venda", class:"btn btn-success" %>
+  <%end%>
+
+  <%= form_with model:[@ad,@sale], method: :patch, local:true do |form|%>
+    <%= form.hidden_field :final_price, value: "#{@sale.ad.price}" %>
+    <%= form.hidden_field :status, value:'canceled' %>
+    <%= form.submit "Cancelar venda", class:"btn btn-danger" %>
+  <%end%>
+
 <% end %>
+
+ <% if @sale.status == 'finished' && current_user.company_employee == @ad.company_employee%>
+   <p>Parabéns! Este produto foi vendido</p>
+ <% end %>
+
+  <% if @sale.status == 'canceled' && current_user.company_employee == @ad.company_employee%>
+   <p> 'Você cancelou esta venda X_X'</p>
+ <% end %>
+
+
 
 
 <h4>Mensagens</h4>

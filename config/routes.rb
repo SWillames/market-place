@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     resources :sales , only: [:show, :create, :update] 
   end
 
-  resources :sales , only: [:show, :create, :update] do
-    resource :comments
+  resources :sales , only: [] do
+    resource :comments, only: [:show, :new, :create]
   end
 
   resources :histories, only: [:index]

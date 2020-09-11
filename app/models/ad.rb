@@ -5,4 +5,6 @@ class Ad < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :sales
 
+  enum status: {available: 0, unavailable: 1}
+
 end
