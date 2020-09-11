@@ -43,24 +43,51 @@ category2 = ProductCategory.create!(name:'Móveis', description:'Categoria para 
 
 
 
-ad1 = Ad.create!(title:'Produto A', description:'Descrição do produto A',price:10,
-           status:0 ,product_category:category1,company_employee: employee1)
+ad1 = Ad.new(title:'Produto A', description:'Descrição do produto A',price:10,
+             status:0 ,product_category:category1,company_employee: employee1)
+ad1.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad1.save!
+
+
 ad2 = Ad.create!(title:'Produto B', description:'Descrição do produto B',price:20,
-           status:0, product_category:category2,company_employee: employee1)
+                 status:0, product_category:category2,company_employee: employee1)
+ad2.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad2.save!
+
 ad3 = Ad.create!(title:'Produto C', description:'Descrição do produto C',price:30,
-           status:0 ,product_category:category1,company_employee: employee2)
+                 status:0 ,product_category:category1,company_employee: employee2)
+ad3.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad3.save!
+
 ad4 = Ad.create!(title:'Produto D', description:'Descrição do produto D',price:10,
-           status:0 ,product_category:category2,company_employee: employee3)
+                 status:0 ,product_category:category2,company_employee: employee3)
+ad4.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad4.save!
+
 ad5 = Ad.create!(title:'Produto E', description:'Descrição do produto E',price:20,
-           status:0, product_category:category1,company_employee: employee4)
+                 status:0, product_category:category1,company_employee: employee4)
+ad5.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad5.save!
+
 ad6 = Ad.create!(title:'Produto F', description:'Descrição do produto F',price:30,
-           status:0 ,product_category:category2,company_employee: employee5)
+                 status:0 ,product_category:category2,company_employee: employee5)
+ad6.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad6.save!
+
 ad7 = Ad.create!(title:'Produto G', description:'Descrição do produto G',price:10,
-          status:0 ,product_category:category1,company_employee: employee6)
+                 status:0 ,product_category:category1,company_employee: employee6)
+ad7.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad7.save!
+
 ad8 = Ad.create!(title:'Produto H', description:'Descrição do produto H',price:20,
-          status:0, product_category:category2,company_employee: employee7)
+                 status:0, product_category:category2,company_employee: employee7)
+ad8.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad8.save!
+
 ad9 = Ad.create!(title:'Produto I', description:'Descrição do produto I',price:30,
-          status:0 ,product_category:category1,company_employee: employee8)
+                 status:0 ,product_category:category1,company_employee: employee8)
+ad9.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
+ad9.save!
 
 sale1 = Sale.create!(buyer: user1, ad:ad3 , status:'in_progress',final_price: nil)
 sale2 = Sale.create!(buyer: user2, ad:ad1, status:'finished',final_price: 200)
