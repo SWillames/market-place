@@ -17,15 +17,16 @@ feature 'Company employee buyer start a sale' do
         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos') 
         
         ad = Ad.create!(title:'Celular Samsung J8', description:'Celular J8 seminovo, nenhum arranhão',price:700,
-                        status:1 ,product_category:product_category,company_employee: company_employee2)
+                        status:'available' ,product_category:product_category,company_employee: company_employee2)
         another_ad = Ad.create!(title:'Playstation', description:'Descrição do playstation',price:800,
-                          status:1, product_category:product_category,company_employee: company_employee2)
+                          status:'available' , product_category:product_category,company_employee: company_employee2)
 
 
         login_as user, scope: :user
         visit root_path
+
         within all('.card', text: 'Celular Samsung J8')[0] do
-          click_on 'Comprar'
+            click_on 'Comprar'
         end
         click_on 'Comprar'
         
@@ -51,9 +52,10 @@ feature 'Company employee buyer start a sale' do
         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos') 
         
         another_ad = Ad.create!(title:'Playstation', description:'Descrição do playstation',price:800,
-                                status:1, product_category:product_category,company_employee: company_employee2)
+                                status:'available', product_category:product_category,company_employee: company_employee2)
+        
         ad = Ad.create!(title:'Celular Samsung J8', description:'Celular J8 seminovo, nenhum arranhão',price:700,
-                        status:1 ,product_category:product_category,company_employee: company_employee2)
+                        status:'available',product_category:product_category,company_employee: company_employee2)
 
 
         login_as user, scope: :user
@@ -90,7 +92,7 @@ feature 'Company employee buyer start a sale' do
         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos') 
         
         ad = Ad.create!(title:'Celular Samsung J8', description:'Celular J8 seminovo, nenhum arranhão',price:700,
-                        status:1 ,product_category:product_category,company_employee: company_employee2)    
+                        status:'available'  ,product_category:product_category,company_employee: company_employee2)    
                         
         login_as user, scope: :user
         visit root_path

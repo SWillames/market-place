@@ -2,7 +2,7 @@ class SalesController < ApplicationController
     
     def show
         @sale = Sale.find(params[:id])
-        @ad = Ad.find(params[:ad_id])
+        @ad = @sale.ad
     end
 
     def create
