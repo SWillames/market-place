@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     def index
        @product_categories = ProductCategory.all
        @company = Company.find_by(domain: current_user.domain)
-       @ads = @company.ads
+       @ads = @company.ads.where(status:'available')
     end
 
     def search
