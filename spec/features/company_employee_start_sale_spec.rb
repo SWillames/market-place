@@ -30,10 +30,12 @@ feature 'Company employee buyer start a sale' do
         end
         click_on 'Comprar'
         
+        expect(page).to have_link('Voltar', href: root_path )
         expect(page).to have_content('Celular Samsung J8')
         expect(page).to have_content('R$ 700,00')
         expect(page).to have_content('Celular J8 seminovo, nenhum arranhão')
-        expect(page).to have_content('Marlene Souza - RH')  
+        expect(page).to have_content('Marlene Souza - RH') 
+        expect(page).to have_content('Aguardando confirmação do vendedor, acompanhe o status da compra em "Meu histórico"')  
    end
 
    scenario 'and send a private message' do
@@ -68,6 +70,7 @@ feature 'Company employee buyer start a sale' do
         fill_in placeholder: 'Envie uma mensagem...', with: 'Olá, gostaria de comprar o produto'
         click_on 'Enviar'
 
+        expect(page).to have_link('Voltar', href: root_path )
         expect(page).to have_content('Celular Samsung J8')
         expect(page).to have_content('R$ 700,00')
         expect(page).to have_content('Celular J8 seminovo')
@@ -101,7 +104,8 @@ feature 'Company employee buyer start a sale' do
         end
         click_on 'Comprar'
         click_on 'Meu histórico'
-
+        
+        expect(page).to have_link('Voltar', href: root_path )
         expect(page).to have_content('Meu histórico')
         expect(page).to have_content(Sale.last.token)
         expect(page).to have_content('Compra')

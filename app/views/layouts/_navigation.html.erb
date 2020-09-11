@@ -1,6 +1,6 @@
 
 
-<nav class="navbar justify-content-center navbar-dark bg-dark"><p class="text-white bg-dark">Market Place</p></nav>
+<nav class="navbar justify-content-center navbar-dark bg-dark"><h3 class="text-white bg-dark">Market Place</h3></nav>
 
 <% if user_signed_in? %>
     <div class="float-right d-inline ">
@@ -14,6 +14,7 @@
                 <% end%>        
             </li>
             <li class="list-group-item"><%= link_to 'Meu histórico', histories_path %></li>
+            <li class="list-group-item"><%= link_to 'Anunciar', new_ad_path%></li>
             <li class="list-group-item"><%= link_to 'Lista de interesses','#' %></li>
             <li class="list-group-item"><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
         </ul>

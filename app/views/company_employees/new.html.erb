@@ -1,22 +1,41 @@
 
+<%= link_to 'Voltar', root_path%> 
+
 <%= form_with model: @company_employee, local:true do |form|%>
+  
+<div class="row">
 
-  <%= form.label :full_name%>
-  <%= form.text_field :full_name%>
+  <div class="col">
+    <%= form.label :full_name%>
+    <%= form.text_field :full_name%>
+  </div>
 
-  <%= form.label :date_of_birth%>
-  <%= form.text_field :date_of_birth%>
+  <div class="col">
+    <%= form.label :date_of_birth%>
+    <%= form.text_field :date_of_birth%>
+  </div>
+  
+  <div class="col">
+    <%= form.label :position%>
+    <%= form.text_field :position%>
+  </div>
 
-  <%= form.label :position%>
-  <%= form.text_field :position%>
-
-  <%= form.label :departament%>
-  <%= form.text_field :departament%>
-
+  <div class="col">
+    <%= form.label :departament%>
+    <%= form.text_field :departament%>
+  </div>
+   
+  <div class="col">
   <%= form.label :cpf%>
   <%= form.text_field :cpf%>
-
-   <%= form.submit 'Cadastrar'%>
-
+  
+  <div class="col">
+  <%= form.submit 'Cadastrar'%>
+ </div>
 
 <% end %>
+
+
+
+  
+    

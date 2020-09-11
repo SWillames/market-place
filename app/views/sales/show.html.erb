@@ -1,3 +1,5 @@
+<%= link_to 'Voltar', root_path%> 
+
 <div>      
   <h3><%= "Compra##{@sale.token} -  #{@ad.title}"%></h3>
 </div> 
@@ -22,6 +24,10 @@ Preço
 <%= number_to_currency @ad.price %>
 </div> 
 
+
+<% if !(current_user.company_employee == @ad.company_employee) && (@sale.status == 'in_progress')%>
+  <b>Aguardando confirmação do vendedor, acompanhe o status da compra em "Meu histórico"</b>
+<%end%>
 
 
 <% if (@sale.status == 'in_progress' && current_user.company_employee == @ad.company_employee) %>

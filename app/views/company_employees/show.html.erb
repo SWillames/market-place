@@ -1,18 +1,45 @@
 
-<%= link_to 'Voltar', root_path%>
+<%= link_to 'Voltar', root_path%>   |
 
 <% if current_user.company_employee.nil? %>
   <%= link_to 'Preencher meu Perfil', new_company_employee_path %>
-
 <% else %>
   <%= link_to 'Editar meu Perfil' %>
-    Nome: <%= current_user.name%>
-    Nome Completo: <%= @company_employee.full_name%>
-    Data de Nascimento: <%= l @company_employee.date_of_birth%>
-    CPF: <%= @company_employee.cpf%>
-    Empresa: <%= @company_employee.company.name %>
-    Cargo: <%= @company_employee.position%>
-    Setor: <%= @company_employee.departament%>
-
 <% end %>
+
+  <div style="margin-top: 100px;">
+
+    <div style="margin: 15px;">
+      Nome: <%= current_user.name%>
+    </div>
+
+    <div style="margin: 15px;">
+      Nome Completo: <%= @company_employee.full_name%>
+    </div>
+
+    <div style="margin: 15px;">
+      Data de Nascimento: <%= l @company_employee.date_of_birth%>
+    </div>
+
+    <div style="margin: 15px;">
+      CPF: <%= @company_employee.cpf%>
+    </div>
+
+
+    <div style="margin: 15px;">
+      Empresa: <%= @company_employee.company.name %>
+    </div>
+
+   <div style="margin: 15px;">
+     Cargo: <%= @company_employee.position%>
+   </div>
+
+    <div style="margin: 15px;">
+      Setor: <%= @company_employee.departament%>
+    </div>
+
+  </div>
+    
+
+
 
