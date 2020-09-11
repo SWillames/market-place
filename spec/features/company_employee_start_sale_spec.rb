@@ -25,15 +25,14 @@ feature 'Company employee buyer start a sale' do
         login_as user, scope: :user
         visit root_path
         within all('.card', text: 'Celular Samsung J8')[0] do
-            click_on 'Comprar'
+          click_on 'Comprar'
         end
         click_on 'Comprar'
         
         expect(page).to have_content('Celular Samsung J8')
         expect(page).to have_content('R$ 700,00')
         expect(page).to have_content('Celular J8 seminovo, nenhum arranhão')
-        expect(page).to have_content('Marlene Souza - RH')
-        
+        expect(page).to have_content('Marlene Souza - RH')  
    end
 
    scenario 'and send a private message' do

@@ -20,7 +20,7 @@ RSpec.describe Sale, type: :model do
             ad = Ad.create!(title:'Celular Samsung J8', description:'Celular J8 seminovo, nenhum arranhão',price:700,
                 status:1 ,product_category:product_category,company_employee: company_employee2)
 
-            sale = Sale.create!(buyer: company_employee, ad: ad)
+            sale = Sale.create!(buyer: user, ad: ad)
 
             sale.save
             
