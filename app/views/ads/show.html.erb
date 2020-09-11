@@ -22,8 +22,11 @@ Preço
 <%= number_to_currency @ad.price %>
 <div> 
 
-
-<%= button_to 'Comprar', ad_sales_path(@ad), method: :post %>
+<% if !(current_user.company_employee == @ad.company_employee) %>
+  <%= button_to 'Comprar', ad_sales_path(@ad), method: :post %>
+<%else%>
+  <p>Você anunciou este produto</p>
+<%end%>
 
 <h3>Comentários</h3>
 <%= render partial: "comments/form", locals: { commentable: @ad } %>
