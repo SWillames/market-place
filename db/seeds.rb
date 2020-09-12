@@ -89,11 +89,6 @@ ad9 = Ad.create!(title:'Produto I', description:'Descrição do produto I',price
 ad9.images.attach(io: File.open(Rails.root.join('spec', 'support', 'cube.jpg')),filename: 'cube.jpg')
 ad9.save!
 
-sale1 = Sale.create!(buyer: user1, ad:ad3 , status:'in_progress',final_price: nil)
-sale2 = Sale.create!(buyer: user2, ad:ad1, status:'finished',final_price: 200)
-
-History.create!(user:user1,sale:sale1, history_type:'purchase')
-History.create!(user:user1,sale:sale2, history_type:'sale')
 
 
 
