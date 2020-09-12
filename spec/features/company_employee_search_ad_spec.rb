@@ -16,10 +16,12 @@ feature 'Company employee searches ads' do
         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos') 
         
         ad_A = Ad.create!(title:'Celular', description:'Descrição',price:700,
-                          status:1 ,product_category:product_category,company_employee: company_employee2)
+                          status:0 ,product_category:product_category,company_employee: company_employee2)
         ad_B = Ad.create!(title:'Celular motorola', description:'Descrição',price:500,
-                          status:1, product_category:product_category,company_employee: company_employee2)
+                          status:0, product_category:product_category,company_employee: company_employee2)
         ad_C = Ad.create!(title:'Geladeira', description:'Descrição',price:865,
+                          status:0 ,product_category:product_category,company_employee: company_employee2)
+        ad_D = Ad.create!(title:'Celular lg', description:'Descrição',price:300,
                           status:1 ,product_category:product_category,company_employee: company_employee2)
 
         login_as user, scope: :user
@@ -33,6 +35,8 @@ feature 'Company employee searches ads' do
         expect(page).to have_content('R$ 500,00')
         expect(page).not_to have_content('Geladeira')
         expect(page).not_to have_content('R$ 865,00')
+        expect(page).not_to have_content('Celular lg')
+        expect(page).not_to have_content('R$ 300,00')
     end
 
     scenario 'and finds by description' do
@@ -49,11 +53,14 @@ feature 'Company employee searches ads' do
         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos') 
         
         ad_A = Ad.create!(title:'Produto A', description:'Celular 6" samsung',price:700,
-                          status:1 ,product_category:product_category,company_employee: company_employee2)
+                          status:0 ,product_category:product_category,company_employee: company_employee2)
         ad_B = Ad.create!(title:'Produto B', description:'Celular 6" motorola',price:500,
-                          status:1, product_category:product_category,company_employee: company_employee2)
-        ad_C = Ad.create!(title:'Produto C', description:'Geladeira brastemp',price:865,
+                          status:0, product_category:product_category,company_employee: company_employee2)
+        ad_C = Ad.create!(title:'Produto C', description:'Celular 6"  Xiaomi',price:665,
                           status:1 ,product_category:product_category,company_employee: company_employee2)
+        ad_D = Ad.create!(title:'Produto D', description:'Geladeira brastemp',price:865,
+                          status:0 ,product_category:product_category,company_employee: company_employee2)
+        
 
         login_as user, scope: :user
         visit root_path
@@ -65,6 +72,8 @@ feature 'Company employee searches ads' do
         expect(page).to have_content('Produto B')
         expect(page).to have_content('R$ 500,00')
         expect(page).not_to have_content('Produto C')
+        expect(page).not_to have_content('R$ 665,00')
+        expect(page).not_to have_content('Produto D')
         expect(page).not_to have_content('R$ 865,00')
     end
 
@@ -84,12 +93,15 @@ feature 'Company employee searches ads' do
 
         
         ad_A = Ad.create!(title:'celular', description:'Celular 6" samsung',price:700,
-                          status:1 ,product_category:product_category_eletronics,company_employee: company_employee2)
+                          status:0 ,product_category:product_category_eletronics,company_employee: company_employee2)
         ad_B = Ad.create!(title:'Sofá', description:'Sofá preto estofado',price:500,
-                          status:1, product_category:product_category_furniture,company_employee: company_employee2)
+                          status:0, product_category:product_category_furniture,company_employee: company_employee2)
         ad_C = Ad.create!(title:'Mesa', description:'Mesa de madeira',price:865,
+                          status:0 ,product_category:product_category_furniture,company_employee: company_employee2)
+        ad_D = Ad.create!(title:'Estante', description:'Estante de livros',price:1000,
                           status:1 ,product_category:product_category_furniture,company_employee: company_employee2)
-
+  
+        
         login_as user, scope: :user
         visit root_path
         click_on 'Móveis'
@@ -98,7 +110,10 @@ feature 'Company employee searches ads' do
         expect(page).to have_content('R$ 500,00')
         expect(page).to have_content('Mesa')
         expect(page).to have_content('R$ 865,00')
+        expect(page).not_to have_content('Estante')
+        expect(page).not_to have_content('R$ 1000,00')
         expect(page).not_to have_content('celular')
         expect(page).not_to have_content('R$ 700,00')
+      
     end
 end

@@ -113,5 +113,4 @@ feature 'Company employee buyer start a sale' do
         expect(page).to have_content('R$ 700,00')
         expect(page).to have_content('Em andamento')
     end
-
 end

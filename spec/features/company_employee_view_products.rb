@@ -41,7 +41,7 @@ feature 'company employee sees products' do
         expect(page).not_to have_content('Descrição do produto C') 
     end
 
-    scenario ', only the available ones' do
+    scenario ',only the available ones' do
         company = Company.create!(name: 'Empresa01', legal_name:'Empresa01 LTDA', cnpj: '98922455000169',
                                     address:'Rua nada, 100', social_media:'linkedin', domain:'@empresa01.com.br')
         user = User.create!(name: 'Maria Lima', email:'tatiana@empresa01.com.br', 

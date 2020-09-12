@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
 
   def domain
-    "#{string = email.slice!(/@.*/)}"
+    "#{email.slice!(/@.*/)}"
   end
 
 end
