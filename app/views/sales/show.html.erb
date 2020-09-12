@@ -10,7 +10,7 @@ Vendido por: <%= "#{@ad.company_employee.user.name} - #{@ad.company_employee.dep
 
 <div> 
 <% @ad.images.each do |image| %>
-    <%= image_tag image %>
+    <%= image_tag image, class:'img-show'%>
 <% end %>
 </div> 
 
