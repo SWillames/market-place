@@ -61,10 +61,11 @@ feature 'Company employee registers new ad' do
         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos')
 
         ad = Ad.create!(title:'Celular Samsung J8', description:'Celular J8 seminovo, nenhum arranhão',price:700,
-                        status:1 ,product_category:product_category,company_employee: company_employee) 
+                        status:'available' ,product_category:product_category,company_employee: company_employee)
 
-        login_as(user, scope: :user)
+        login_as user, scope: :user
         visit root_path
+
         within all('.card', text: 'Celular Samsung J8')[0] do
             click_on 'Comprar'
         end
@@ -76,5 +77,45 @@ feature 'Company employee registers new ad' do
         expect(page).to have_content('RH')     
         expect(page).to have_content('Você anunciou este produto')  
         expect(page).not_to have_content('Comprar')     
-    end      
+    end  
+    
+    scenario 'and atrributes can not be empty' do
+       company = Company.create!(name: 'Empresa01', legal_name:'Empresa01 LTDA', cnpj: '98922455000169',
+                                 address:'Rua nada, 100', social_media:'linkedin', domain:'@empresa01.com.br')
+        company_employee = CompanyEmployee.create!(full_name:'Sergio Delgado',date_of_birth:'19/05/1990',position:'Recrutador',
+                                                  departament:'RH',cpf:'05169113099', company:company)
+        user = User.create!(name: 'Maria Lima', email:'tatiana@empresa01.com.br', 
+                            password: '12345678', company_employee: company_employee)
+              
+        product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos')
+    
+        login_as user, scope: :user
+        visit root_path
+        click_on 'Anunciar'
+        click_on 'Cadastrar'
+        
+        expect(page).to have_content('Título do anúncio não pode ficar em branco')
+        expect(page).to have_content('Descrição não pode ficar em branco')
+        expect(page).to have_content('Preço não pode ficar em branco')
+        expect(page).to have_content('Categoria do produto é obrigatório(a)')       
+    end
+
+    scenario 'and price must be greater than -1' do
+        company = Company.create!(name: 'Empresa01', legal_name:'Empresa01 LTDA', cnpj: '98922455000169',
+                                  address:'Rua nada, 100', social_media:'linkedin', domain:'@empresa01.com.br')
+         company_employee = CompanyEmployee.create!(full_name:'Sergio Delgado',date_of_birth:'19/05/1990',position:'Recrutador',
+                                                   departament:'RH',cpf:'05169113099', company:company)
+         user = User.create!(name: 'Maria Lima', email:'tatiana@empresa01.com.br', 
+                             password: '12345678', company_employee: company_employee)
+               
+         product_category = ProductCategory.create!(name:'Eletrônicos', description:'Categoria para eletrônicos')
+     
+         login_as user, scope: :user
+         visit root_path
+         click_on 'Anunciar'
+         fill_in 'Preço', with: '-200'
+         click_on 'Cadastrar'
+         
+         expect(page).to have_content('Preço deve ser maior que -1')   
+     end
 end

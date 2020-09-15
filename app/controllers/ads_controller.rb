@@ -16,8 +16,12 @@ class AdsController < ApplicationController
 
    def create
     @ad = Ad.new(ad_params)
-    @ad.save
-    redirect_to ad_path(@ad)    
+    if @ad.save
+      redirect_to ad_path(@ad)  
+    else 
+      @product_categories = ProductCategory.all
+      render :new
+    end 
    end
 
    private 

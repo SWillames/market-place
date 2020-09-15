@@ -7,4 +7,14 @@ class Ad < ApplicationRecord
 
   enum status: {available: 0, unavailable: 1}
 
+  validates :title, :description, :price, presence: true
+  validates :price, numericality: { greater_than: -1 }
+
+  def validate_images
+    if images.empty?
+      errors.add(:images,"necessária para publicar o anúncio")
+    end  
+  end  
+
+            
 end

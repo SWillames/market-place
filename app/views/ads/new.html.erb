@@ -1,22 +1,37 @@
+<% @ad.errors.full_messages.each do |message|%>
+    <ul>
+        <li><%= message%></li>
+    </ul>
+<%end%>
 
 <%= form_with model: @ad, local: true do |form|%>
+    
+    <div>
+        <%= form.label :title%>
+        <%= form.text_field :title%>
+    </div>
+    
+    <div>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+     </div>
+    
+    <div>
+        <%= form.label :price %>
+        <%= form.text_field :price %>
+     </div>
 
-    <%= form.label :title%>
-    <%= form.text_field :title%>
+     <div>
+        <%= form.label :product_category_id%>
+        <%= form.collection_select(:product_category_id, @product_categories, :id, :name, prompt: 'Escolha uma categoria')%> 
+    </div>
 
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <div>
+        <%= form.label :images, 'Imagens do produto'%>
+        <%= form.file_field :images, multiple: true %>
+    <div>
 
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-
-    <%= form.label :product_category_id%>
-    <%= form.collection_select(:product_category_id, @product_categories, :id, :name, prompt: 'Escolha uma categoria')%>
-
-    <%= form.label :images, 'Imagens do produto'%>
-    <%= form.file_field :images, multiple: true %>
-
-    <%= form.submit 'Cadastrar'%>
+    <%= form.submit 'Cadastrar', class:"btn btn-dark"%>
 
 <% end %>
 
